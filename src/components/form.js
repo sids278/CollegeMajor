@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import '/Users/siddharthsharma/Desktop/MAJOR/calendar/src/styles.css'; // Import the CSS file
+import '../../src/styles.css'; // Import the CSS file
 
 const EventForm = ({ onSubmit }) => {
     const navigate = useNavigate();

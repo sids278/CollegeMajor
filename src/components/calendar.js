@@ -2,23 +2,28 @@
 import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import EventCard from './event';
+// import EventCard from './event';
+import EventPopup from './eventpopup';
 
 const MyCalendar = ({ events }) => {
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const handleEventClick = (clickInfo) => {
         // Extract event details from clickInfo
         const clickedEvent = clickInfo.event;
-        console.log(clickedEvent.title)
+        console.log(clickedEvent.date);
 
         // Set the selectedEvent state to the clicked event
         setSelectedEvent(clickedEvent);
+        setIsPopupOpen(true);
     };
 
     const handleCloseCard = () => {
+        setIsPopupOpen(false);
         // Clear the selectedEvent state when closing the card
         setSelectedEvent(null);
+        
     };
 
     return (
@@ -30,8 +35,9 @@ const MyCalendar = ({ events }) => {
                 events={events}
                 eventClick={handleEventClick}
             />
-            {selectedEvent && (
-                <EventCard event={selectedEvent.extendedProps} onClose={handleCloseCard} />
+            {selectedEvent && isPopupOpen && (
+                <EventPopup event = {selectedEvent.extendedProps} onClose={handleCloseCard} />
+                // <EventCard event={selectedEvent.extendedProps} onClose={handleCloseCard} />
             )}
         </div>
     );
