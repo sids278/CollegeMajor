@@ -1,6 +1,6 @@
 import React from "react";
 import Event from "./event";
-import "../../src/components/eventpopup.css";
+import "../../src/styles.css";
 
 const EventPopup = ({ event, onClose }) => {
     return (

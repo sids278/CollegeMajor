@@ -4,6 +4,7 @@ import EventList from './components/eventlist';
 import MyCalendar from './components/calendar';
 import { Layout, Menu } from 'antd';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import AnalysisForm from './components/analysisform';
 
 const { Header, Content } = Layout;
 
@@ -52,17 +53,23 @@ const App = () => {
             <Menu.Item key="2">
               <Link to="/event-form">Add Event</Link>
             </Menu.Item>
+            <Menu.Item key="3">
+              <Link to="/analysis-form">Analyse Yourself</Link>
+            </Menu.Item>
           </Menu>
         </Header>
         <Content style={{ padding: '0 50px' }}>
           <Routes>
             <Route path="/" exact key="calendar" element={<><MyCalendar events={events} /> 
-              <EventList events={events} /></>}/>
+              {/* <EventList events={events} /> */}
+              </>}/>
               
             
             <Route path="/event-form" key="event-form"
               element={<EventForm onSubmit={handleEventSubmit} />}
             />
+            <Route path="/analysis-form" key="analysis-form"
+              element={<AnalysisForm />}/>
           </Routes>
         </Content>
       </Layout>
