@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import EventForm from './components/form';
-import EventList from './components/eventlist';
-import MyCalendar from './components/calendar';
 import { Layout, Menu } from 'antd';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate} from 'react-router-dom';
+import { LogoutOutlined } from '@ant-design/icons'; // Import the logout icon
+import LoginForm from './components/userform';
+import MyCalendar from './components/calendar';
+import EventForm from './components/form';
 import AnalysisForm from './components/analysisform';
 
 const { Header, Content } = Layout;
 
 const App = () => {
-  const [events, setEvents] = useState([
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [events, setEvents] = useState([ // Define the events state
     {
       title: 'Meeting with Client',
       description: 'Discuss project requirements and timeline.',
@@ -20,56 +22,44 @@ const App = () => {
       description: 'Team building and socializing.',
       date: new Date('2024-03-15T12:30:00'),
     },
-    {
-      title: 'Presentation',
-      description: 'Present project progress to stakeholders.',
-      date: new Date('2024-03-20T14:00:00'),
-    },
-    {
-      title: 'Training Session',
-      description: 'Training new team members on project tools.',
-      date: new Date('2024-03-25T10:00:00'),
-    },
-    {
-      title: 'Project Deadline',
-      description: 'Final submission of project deliverables.',
-      date: new Date('2024-03-31T17:00:00'),
-    },
-  ]
-);
+    // Add more events as needed
+  ]);
 
-  const handleEventSubmit = (event) => {
-    setEvents([...events, event]);
+  const handleLogin = (studentId) => {
+    if (studentId.trim() !== '') {
+      setLoggedIn(true);
+    }
   };
+
 
   return (
     <Router>
       <Layout>
-        <Header>
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <Link to="/">Calendar</Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Link to="/event-form">Add Event</Link>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Link to="/analysis-form">Analyse Yourself</Link>
-            </Menu.Item>
-          </Menu>
-        </Header>
+        {loggedIn && (
+          <Header style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+              <Menu.Item key="1">
+                <Link to="/calendar">Calendar</Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to="/event-form">Add Event</Link>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/analysis-form">Analyse Yourself</Link>
+              </Menu.Item>
+            </Menu>
+            
+          </Header>
+        )}
         <Content style={{ padding: '0 50px' }}>
           <Routes>
-            <Route path="/" exact key="calendar" element={<><MyCalendar events={events} /> 
-              {/* <EventList events={events} /> */}
-              </>}/>
-              
-            
-            <Route path="/event-form" key="event-form"
-              element={<EventForm onSubmit={handleEventSubmit} />}
+            <Route
+              path="/"
+              element={loggedIn ? <Navigate to="/calendar" /> : <LoginForm onLogin={handleLogin} />}
             />
-            <Route path="/analysis-form" key="analysis-form"
-              element={<AnalysisForm />}/>
+            <Route path="/calendar" element={<MyCalendar events={events} />} /> {/* Pass events data to MyCalendar */}
+            <Route path="/event-form" element={<EventForm />} />
+            <Route path="/analysis-form" element={<AnalysisForm />} />
           </Routes>
         </Content>
       </Layout>
