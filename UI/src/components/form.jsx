@@ -16,7 +16,7 @@ const EventForm = ({ onSubmit }) => {
         onSubmit({ title, date });
         setTitle('');
         setDate(new Date());
-        navigate('/')
+        navigate('/');
     };
 
     return (
@@ -35,7 +35,8 @@ const EventForm = ({ onSubmit }) => {
                     selected={date}
                     onChange={(date) => setDate(date)}
                     showTimeSelect
-                    dateFormat="MMMM d, yyyy h:mm aa"
+                    dateFormat="MMMM d, yyyy h:mm aa" // Corrected date format
+                    className="date-picker"
                 />
             </div>
             <button type="submit" className="submit-button">Add Event</button>
