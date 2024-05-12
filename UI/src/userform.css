@@ -6,7 +6,6 @@
     align-items: center;
     height: 100vh;
     margin-right: 150px;
-    background-color: #d3292900;
   }
   
   .image-container {
@@ -20,9 +19,10 @@
     border-radius: 20px;
   }
   
-  .form-container {
+  .loginform-container {
     flex: 1;
-    max-width: 100%;
+    max-width: 50%;
+    margin-top: 100px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;

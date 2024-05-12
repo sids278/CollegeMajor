@@ -37,6 +37,15 @@ const UserForm = ({ onLogin }) => {
                 setError('Please enter a valid SID!');
                 return;
               }
+              if (year.length !==1) {
+                setError('Please enter valid year!');
+              }
+              if (phoneNumber.length !== 10){
+                setError('Please enter a valid phone number!');
+              }
+              if (hostelRoomNo.length !== 3) {
+                setError('Please enter a valid room no');
+              }
               else{
                 setError('');
               }
@@ -81,7 +90,7 @@ const UserForm = ({ onLogin }) => {
             <div className = "image-container">
                 <img src={calenderImg} alt="calendar" />
             </div>
-            <div className='form-container'>
+            <div className='loginform-container'>
                 <h1>Student Care Calendar</h1>
                 {error && <p className="error-message">{error}</p>}
                 <form onSubmit={handleSubmit}>
@@ -105,51 +114,56 @@ const UserForm = ({ onLogin }) => {
                             required
                         />
                 </div>
-                {/* <div className='form-field'>
+                <div className='form-group'>
+                    <label>Branch:</label>
                     <input
                         type='text'
-                        placeholder='Branch'
+                        placeholder='Enter your Branch'
                         value={branch}
                         onChange={(e) => setBranch(e.target.value)}
-                        className='input-text'
+                        required
                     />
-                </div> */}
-                {/* <div className='form-field'>
+                </div> 
+                <div className='form-group'>
+                    <label>Year:</label>
                     <input
                         type='text'
-                        placeholder='Year'
+                        placeholder='Enter your Year'
                         value={year}
                         onChange={(e) => setYear(e.target.value)}
-                        className='input-text'
-                    />
-                </div> */}
-                {/* <div className='form-field'>
-                    <input
-                        type='text'
-                        placeholder='Phone Number'
-                        value={phoneNumber}
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        className='input-text'
-                    />
-                </div> */}
-                {/* <div className='form-field'>
-                    <input
-                        type='text'
-                        placeholder='Hostel'
-                        value={hostel}
-                        onChange={(e) => setHostel(e.target.value)}
-                        className='input-text'
+                        required
                     />
                 </div>
-                <div className='form-field'>
+                 <div className='form-group'>
+                    <label>Phone Number:</label>
                     <input
                         type='text'
-                        placeholder='Hostel Room No'
+                        placeholder='Enter your Phone Number'
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className='form-group'>
+                    <label>Hostel Name:</label>
+                    <input
+                        type='text'
+                        placeholder='Enter your Hostel'
+                        value={hostel}
+                        onChange={(e) => setHostel(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className='form-group'>
+                    <label>Hostel Room no:</label>
+                    <input
+                        type='text'
+                        placeholder='Enter your Hostel Room No'
                         value={hostelRoomNo}
                         onChange={(e) => setHostelRoomNo(e.target.value)}
-                        className='input-text'
+                        required
                     />
-                </div> */}
+                </div>
                     <div>
                         <button type='submit'>Login</button>
                     </div>
