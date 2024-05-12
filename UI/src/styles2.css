@@ -13,33 +13,32 @@
 }
 
 .form-container {
-    height: 100%;
-    /* Make the form container full height */
-    max-width: 400px;
-    /* Adjust the maximum width of the form */
-    
-    background-color: rgba(255, 255, 255, 0.9);
-    /* Adjust background opacity as needed */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    /* Add a subtle shadow for depth */
-}
-
-
-
-.input-text {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
+    flex: 1;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    outline: none;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 60px;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.input-text {
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 button {
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     background-color: #007bff;
