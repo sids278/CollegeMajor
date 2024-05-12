@@ -1,6 +1,7 @@
 // MyCalendar.js
 import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
+import '../../src/calendar.css';
 import dayGridPlugin from '@fullcalendar/daygrid';
 // import EventCard from './event';
 import EventPopup from './eventpopup';
@@ -36,7 +37,7 @@ const MyCalendar = ({ events }) => {
                 eventClick={handleEventClick}
             />
             {selectedEvent && isPopupOpen && (
-                <EventPopup event = {selectedEvent.extendedProps} onClose={handleCloseCard} />
+                <EventPopup className="event-popup"event = {selectedEvent.extendedProps} onClose={handleCloseCard} />
                 // <EventCard event={selectedEvent.extendedProps} onClose={handleCloseCard} />
             )}
         </div>

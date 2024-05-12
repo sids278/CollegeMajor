@@ -6,21 +6,22 @@ import LoginForm from './components/userform';
 import MyCalendar from './components/calendar';
 import EventForm from './components/form';
 import AnalysisForm from './components/analysisform';
+import '../src/App.css';
 
 const { Header, Content } = Layout;
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [events, setEvents] = useState([ // Define the events state
     {
       title: 'Meeting with Client',
       description: 'Discuss project requirements and timeline.',
-      date: new Date('2024-03-10T09:00:00'),
+      date: new Date('2024-05-10T09:00:00'),
     },
     {
       title: 'Lunch with Team',
       description: 'Team building and socializing.',
-      date: new Date('2024-03-15T12:30:00'),
+      date: new Date('2024-05-15T12:30:00'),
     },
     // Add more events as needed
   ]);
@@ -36,8 +37,8 @@ const App = () => {
     <Router>
       <Layout>
         {loggedIn && (
-          <Header style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+          <Header className="header-container"style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Menu className="header-menu"theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
               <Menu.Item key="1">
                 <Link to="/calendar">Calendar</Link>
               </Menu.Item>

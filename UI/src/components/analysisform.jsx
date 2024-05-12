@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../src/styles2.css';
+import '../../src/styles.css';
 import Bifurcation from './bifurcation';
 
 const AnalysisForm = () => {

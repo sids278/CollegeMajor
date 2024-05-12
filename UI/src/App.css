@@ -13,19 +13,35 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Header.css */
+
+.header-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
 }
 
-.App-link {
-  color: #61dafb;
+.header-menu {
+  background-color: #001529; /* Dark background color */
+  flex: 1; /* Take up remaining space */
+  display: flex;
+  justify-content: flex-end; /* Right align menu items */
+}
+
+.header-menu .ant-menu-item {
+  margin: 0 10px;
+}
+
+.header-menu .ant-menu-item a {
+  color: #fff; /* White text color */
+}
+
+.header-menu .ant-menu-item a:hover {
+  color: #1890ff; /* Change text color on hover */
+}
+
+.header-menu .ant-menu-item-selected {
+  background-color: #18f3ff; /* Background color for selected item */
 }
 
 @keyframes App-logo-spin {
