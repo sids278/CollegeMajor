@@ -28,8 +28,6 @@ class RegisterUser(APIView):
                 }
             )
         serializer.save()
-        print('///')
         user = CustomUser.objects.get(sid=serializer.data["sid"])
-        print(user)
         token_obj, _ = Token.objects.get_or_create(user=user)
         return Response({"status": 200, "token": str(token_obj)})
