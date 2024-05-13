@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../src/userform.css';
 import calenderImg from './calendar.png';
 
-const UserForm = ({ onLogin }) => {
+const UserForm = () => {
     const [username, setUsername] = useState('');
     const [useremail, setUseremail] = useState('');
     const [sid, setSid] = useState('');
@@ -68,7 +68,7 @@ const UserForm = ({ onLogin }) => {
                 localStorage.setItem('token', token);
     
                 // Trigger the onLogin callback with the student ID
-                onLogin(sid);
+                
                 
                 // Redirect to the calendar page
                 navigate('/calendar');
