@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../../src/userform.css';
 import calenderImg from './calendar.png';
 
-const UserForm = ({ onLogin }) => {
+const UserForm = () => {
+    const [username, setUsername] = useState('');
     const [useremail, setUseremail] = useState('');
     const [sid, setSid] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -18,6 +19,7 @@ const UserForm = ({ onLogin }) => {
         e.preventDefault();
     
         const payload = {
+            username,
             useremail,
             sid,
             phone_number: phoneNumber,
@@ -32,7 +34,6 @@ const UserForm = ({ onLogin }) => {
                 setError('Please enter your pec email id!');
                 return;
               }
-        
               if (sid.length !== 8) {
                 setError('Please enter a valid SID!');
                 return;
@@ -50,7 +51,7 @@ const UserForm = ({ onLogin }) => {
                 setError('');
               }
 
-            const response = await fetch('http://localhost:8000/register/', {
+            const response = await fetch('http://localhost:8000/api/register/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -67,7 +68,7 @@ const UserForm = ({ onLogin }) => {
                 localStorage.setItem('token', token);
     
                 // Trigger the onLogin callback with the student ID
-                onLogin(sid);
+                
                 
                 // Redirect to the calendar page
                 navigate('/calendar');
@@ -94,6 +95,16 @@ const UserForm = ({ onLogin }) => {
                 <h1>Student Care Calendar</h1>
                 {error && <p className="error-message">{error}</p>}
                 <form onSubmit={handleSubmit}>
+                <div className='form-group'>
+                        <label>Name:</label>
+                        <input
+                            type='text'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder='Enter your name'
+                            required
+                        />
+                    </div>
                     <div className='form-group'>
                         <label>Email:</label>
                         <input
@@ -165,7 +176,7 @@ const UserForm = ({ onLogin }) => {
                     />
                 </div>
                     <div>
-                        <button type='submit'>Login</button>
+                        <button type='submit'>Register</button>
                     </div>
                 </form>
             </div>
